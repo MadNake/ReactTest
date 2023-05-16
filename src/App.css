@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+}
+
+#root {
+  background-color: rgba(109, 97, 86, 0.639);
+}
+
+.app-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-rows: 60px 1fr;
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+.app-wrapper__content {
+  grid-column: 2;
+  grid-row: 2 / 3;
+  background-color: #3256c4;
+}

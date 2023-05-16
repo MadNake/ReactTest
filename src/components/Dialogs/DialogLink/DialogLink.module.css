@@ -1,0 +1,42 @@
+.dialog {
+	list-style: none;
+	min-height: 24px;
+ }
+
+.dialog__link {
+	display: inline-block;
+	cursor: pointer;
+	transition: all 0.5s ease;
+	color: #000;
+  text-decoration: none;
+}
+
+.dialog__link::after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: black;
+  transition: 300ms;
+}
+
+.dialog__link:hover::after {
+  width: 100%;
+}
+
+.active {
+	color:rgb(225, 164, 50)
+}
+
+.active::after {
+	content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: rgb(225, 164, 50);
+  transition: 500ms;
+}
+
+.active:hover::after {
+  width: 100%;
+}
