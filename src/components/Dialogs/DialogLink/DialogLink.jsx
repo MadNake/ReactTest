@@ -5,13 +5,11 @@ const setActive = ({isActive}) => isActive ? `${s.active} ${s.dialog__link}` : s
 
 const DialogLink = (props) => {
 	return (
-		<li className={s.dialog}>
 			<NavLink to={"/dialogs/" + props.id} className={setActive}>
 				<span>
 					{props.name}
 				</span>
 			</NavLink>
-		</li>
 	)
 }
 

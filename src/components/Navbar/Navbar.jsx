@@ -12,6 +12,7 @@ const Navbar = () => {
 			<li><NavLink className={setActive} to='/news'>News</NavLink></li>
 			<li><NavLink className={setActive} to='/music'>Music</NavLink></li>
 			<li><NavLink className={setActive} to='/settings'>Settings</NavLink></li>
+			<li><NavLink className={setActive} to='/users'>Users</NavLink></li>
 		</ul>
 	</nav>
 	)
