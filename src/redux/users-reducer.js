@@ -3,32 +3,10 @@ const UNFOLLOW_USER = "UNFOLLOW_USER"
 const SET_USERS = "SET_USERS"
 
 let initialState = {
-	usersData: [
-		// {
-		// 	id: 1, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-		// 	followed: true, name: "Dmitry K.", statusbar: "I am looking for a job right now", location: { city: "Minsk", country: "Belarus" },
-		// },
-		// {
-		// 	id: 2, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-		// 	followed: true, name: "Svetlana D.", statusbar: "I am so busy", location: { city: "Kyiv", country: "Ukraine" },
-		// },
-		// {
-		// 	id: 3, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-		// 	followed: false, name: "Sergei S.", statusbar: "I like footbal", location: { city: "Moscow", country: "Russia" },
-		// },
-		// {
-		// 	id: 4, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-		// 	followed: false, name: "Sergei S.", statusbar: "I like footbal", location: { city: "Kyiv", country: "Ukraine" },
-		// },
-		// {
-		// 	id: 5, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-		// 	followed: false, name: "Sergei S.", statusbar: "I like footbal", location: { city: "Berlin", country: "Germany" },
-		// },
-		// {
-		// 	id: 6, photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-		// 	followed: false, name: "Sergei S.", statusbar: "I like footbal", location: { city: "Paris", country: "France" },
-		// },
-	]
+	usersData: [],
+	pageSize: 5,
+	totalUsersCount: 20,
+	currentPage: 1,
 }
 
 const usersReducer = (state = initialState, action) => {
