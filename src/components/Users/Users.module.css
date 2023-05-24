@@ -82,3 +82,13 @@
 .selectedPage {
 	font-weight: bold;
 }
+
+.pages {
+	display: flex;
+	gap: 10px;
+	font-size: 18px;
+}
+
+.pages__number {
+	cursor: pointer;
+}
