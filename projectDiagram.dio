@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="4OFWmAnfIbQ7ZDJStAwW" name="Page-1">
-        <mxGraphModel dx="2234" dy="1244" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1819" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -24,11 +24,11 @@
                 <mxCell id="43" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="4" target="42" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="4">
+                <mxCell id="45" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="4" edge="1" target="53">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="-180" y="400" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="-180" y="340"/>
+                            <mxPoint x="-255" y="340"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -73,11 +73,14 @@
                 <mxCell id="42" value="Header" style="whiteSpace=wrap;html=1;fontSize=14;rounded=0;gradientColor=none;" parent="1" vertex="1">
                     <mxGeometry x="630" y="400" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="UsersContainer" style="whiteSpace=wrap;html=1;rounded=0;gradientColor=none;verticalAlign=top;fontSize=14;" vertex="1" parent="1">
-                    <mxGeometry x="-260" y="400" width="170" height="90" as="geometry"/>
+                <mxCell id="53" value="UsersContainer =&amp;gt;(props and state)" style="whiteSpace=wrap;html=1;rounded=0;gradientColor=none;verticalAlign=top;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="-370" y="400" width="230" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="Users" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
-                    <mxGeometry x="-220" y="435" width="90" height="40" as="geometry"/>
+                <mxCell id="55" value="Users API class container =&amp;gt; life cycle methods and API requests" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;align=center;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="-340" y="430" width="170" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="Users" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="-300" y="490" width="90" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
