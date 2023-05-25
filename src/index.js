@@ -18,6 +18,8 @@ root.render(
 		</BrowserRouter>
 	</React.StrictMode>
 )
+// created BrowserRouter for routing between pages
+// created a provider to pass store to child components through api context
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,6 +1,7 @@
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
 
+// created Functional/Presentation Component
 
 let Users = (props) => {
 	let followerTextButton = (u) => {
@@ -8,7 +9,7 @@ let Users = (props) => {
 			<button onClick={() => props.unfollow(u.id)} className={s.button}>Unfollow</button> :
 			<button onClick={() => props.follow(u.id)} className={s.button}>Follow</button>
 	};
-// created follow/unfollow button
+	// created follow/unfollow button
 
 	let usersElements = props.users.map((u) => (
 		<li className={s.user__element} key={u.id}>
@@ -22,20 +23,20 @@ let Users = (props) => {
 		</li>
 	)
 	);
-// created users elements
+	// created users elements
 
 	let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 	let pages = [];
 	for (let i = 1; i <= pagesCount; i++) {
 		pages.push(i)
 	};
-// created an array of pages with the total number of users pages
+	// created an array of pages with the total number of users pages
 
 	let curP = props.currentPage;
 	let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
 	let curPL = curP + 5;
 	let slicedPages = pages.slice(curPF, curPL);
-// created pagination of users pages
+	// created pagination of users pages
 
 	return (
 		<section className={s.users}>
