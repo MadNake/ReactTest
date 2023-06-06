@@ -7,3 +7,9 @@
 .profile__name, .profile__description {
   padding-left: 10px;
 }
+
+.profileAva__image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}

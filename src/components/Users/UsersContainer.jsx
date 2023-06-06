@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { followAC, toggleIsFetchingAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC } from "../../redux/users-reducer";
+import { follow, toggleIsFetching, setCurrentPage, setUsers, setUsersTotalCount, unfollow } from "../../redux/users-reducer";
 import React from "react";
 import axios from "axios";
 import Users from "./Users";
@@ -11,13 +11,15 @@ import Preloader from "../common/Preloader/Preloader";
 class UsersContainer extends React.Component {
 
 	componentDidMount = () => {
-		this.props.toggleIsFetching(true)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-			.then(response => {
-				this.props.toggleIsFetching(false);
-				this.props.setUsers(response.data.items);
-				this.props.setTotalUsersCount(response.data.totalCount);
-			});
+		if (this.props.users.length === 0) {
+			this.props.toggleIsFetching(true);
+			axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+				.then(response => {
+					this.props.toggleIsFetching(false);
+					this.props.setUsers(response.data.items);
+					this.props.setUsersTotalCount(response.data.totalCount);
+				});
+		}
 	};
 	// Processes that occur after rendering
 
@@ -58,29 +60,36 @@ let mapStateToProps = (state) => {
 };
 // added state to Users component
 
-let mapDispatchToProps = (dispatch) => {
-	return {
-		follow: (userId) => {
-			dispatch(followAC(userId))
-		},
-		unfollow: (userId) => {
-			dispatch(unfollowAC(userId))
-		},
-		setUsers: (users) => {
-			dispatch(setUsersAC(users))
-		},
-		setCurrentPage: (currentPage) => {
-			dispatch(setCurrentPageAC(currentPage))
-		},
-		setTotalUsersCount: (count) => {
-			dispatch(setUsersTotalCountAC(count))
-		},
-		toggleIsFetching: (isFetching) => {
-			dispatch(toggleIsFetchingAC(isFetching))
-		},
-	}
-};
+// let mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		follow: (userId) => {
+// 			dispatch(followAC(userId))
+// 		},
+// 		unfollow: (userId) => {
+// 			dispatch(unfollowAC(userId))
+// 		},
+// 		setUsers: (users) => {
+// 			dispatch(setUsersAC(users))
+// 		},
+// 		setCurrentPage: (currentPage) => {
+// 			dispatch(setCurrentPageAC(currentPage))
+// 		},
+// 		setTotalUsersCount: (count) => {
+// 			dispatch(setUsersTotalCountAC(count))
+// 		},
+// 		toggleIsFetching: (isFetching) => {
+// 			dispatch(toggleIsFetchingAC(isFetching))
+// 		},
+// 	}
+// };
 // added dispatchs to Users component
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+	follow,
+	unfollow,
+	setUsers,
+	setCurrentPage,
+	setUsersTotalCount,
+	toggleIsFetching,
+})(UsersContainer)
 // connect "state" and "dispatchs" to UsersContainer to use there to render "Users" and use API requests

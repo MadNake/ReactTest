@@ -1,5 +1,6 @@
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
+import { NavLink } from "react-router-dom";
 
 // created Functional/Presentation Component
 
@@ -13,7 +14,9 @@ let Users = (props) => {
 
 	let usersElements = props.users.map((u) => (
 		<li className={s.user__element} key={u.id}>
-			<img className={s.profile__photo} src={u.photos.small !== null ? u.photos.small : userPhoto} alt="profile__photo" />
+			<NavLink to={`/profile/${u.id}`}>
+				<img className={s.profile__photo} src={u.photos.small !== null ? u.photos.small : userPhoto} alt="profile__photo" />
+			</NavLink>
 			{followerTextButton(u)}
 			<div className={s.user__info}>
 				<h3 className={s.user__name}>{u.name}</h3>
@@ -41,7 +44,7 @@ let Users = (props) => {
 	return (
 		<section className={s.users}>
 			<div className={s.pages}>
-				{slicedPages.map(p => <span onClick={(e) => { props.onPageChenged(p) }} className={`${props.currentPage === p ? s.selectedPage : ""} ${s.pages__number}`}>{p}</span>)}
+				{slicedPages.map(p => <span key={p} onClick={(e) => { props.onPageChenged(p) }} className={`${props.currentPage === p ? s.selectedPage : ""} ${s.pages__number}`}>{p}</span>)}
 				<span>of {pagesCount}</span>
 			</div>
 			<h2 className={s.users__header}>Users</h2>

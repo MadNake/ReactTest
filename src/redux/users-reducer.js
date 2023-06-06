@@ -68,12 +68,12 @@ const usersReducer = (state = initialState, action) => {
 };
 // Created ways to manage the state
 
-export const followAC = (userId) => ({ type: FOLLOW_USER, userId })
-export const unfollowAC = (userId) => ({ type: UNFOLLOW_USER, userId })
-export const setUsersAC = (users) => ({ type: SET_USERS, users })
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
-export const setUsersTotalCountAC = (count) => ({type : SET_USERS_TOTAL_COUNT, count})
-export const toggleIsFetchingAC = (isFetching) => ({type : TOGGLE_IS_FETCHING, isFetching})
+export const follow = (userId) => ({ type: FOLLOW_USER, userId })
+export const unfollow = (userId) => ({ type: UNFOLLOW_USER, userId })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setUsersTotalCount = (count) => ({type : SET_USERS_TOTAL_COUNT, count})
+export const toggleIsFetching = (isFetching) => ({type : TOGGLE_IS_FETCHING, isFetching})
 // Created "action creators" to pass conditions to the "reducer"
 
 export default usersReducer
