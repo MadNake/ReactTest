@@ -10,13 +10,26 @@ class ProfileContainer extends React.Component {
 	componentDidMount() {
 		let profileId = this.props.router.params.profileId;
 		if (!profileId) {
-			profileId = 2;
+			this.props.isAuth ? profileId = this.props.userId : profileId = 2;
 		};
 		profileAPI.getProfile(profileId)
 			.then(response => {
 				this.props.setUserProfile(response)
 			});
 	};
+
+	componentDidUpdate(prevProps) {
+		if (this.props.router.location !== prevProps.router.location) {
+			let profileId = this.props.router.params.profileId;
+			if (!profileId) {
+				this.props.isAuth ? profileId = this.props.userId : profileId = 2
+			};
+			profileAPI.getProfile(profileId)
+				.then(response => {
+					this.props.setUserProfile(response)
+				});
+		}
+	}
 
 	render() {
 		return (
@@ -26,7 +39,9 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-	profile: state.profilePage.profile
+	profile: state.profilePage.profile,
+	isAuth: state.auth.isAuth,
+	userId: state.auth.userId,
 });
 
 function withRouter(Component) {
