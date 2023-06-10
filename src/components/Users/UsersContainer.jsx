@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, toggleIsFetching, setCurrentPage, setUsers, setUsersTotalCount, unfollow } from "../../redux/users-reducer";
+import { follow, toggleIsFetching, setCurrentPage, setUsers, setUsersTotalCount, unfollow, toggleFollowingProgress } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
@@ -45,7 +45,9 @@ class UsersContainer extends React.Component {
 				unfollow={this.props.unfollow}
 				follow={this.props.follow}
 				currentPage={this.props.currentPage}
-				onPageChenged={this.onPageChenged} />}
+				onPageChenged={this.onPageChenged}
+				toggleFollowingProgress={this.props.toggleFollowingProgress}
+				followingInProgress={this.props.followingInProgress}/>}
 		</>
 	};
 };
@@ -58,6 +60,7 @@ let mapStateToProps = (state) => {
 		totalUsersCount: state.usersPage.totalUsersCount,
 		currentPage: state.usersPage.currentPage,
 		isFetching: state.usersPage.isFetching,
+		followingInProgress: state.usersPage.followingInProgress,
 	}
 };
 // added state to Users component
@@ -70,5 +73,6 @@ export default connect(mapStateToProps, {
 	setCurrentPage,
 	setUsersTotalCount,
 	toggleIsFetching,
+	toggleFollowingProgress,
 })(UsersContainer)
 // connect "state" and "dispatchs" to UsersContainer to use there to render "Users" and use API requests

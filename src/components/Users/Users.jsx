@@ -8,20 +8,25 @@ import { followAPI } from "../../api/api";
 let Users = (props) => {
 	let followerTextButton = (u) => {
 		return u.followed ?
-			<button onClick={() => {
+			<button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
+				props.toggleFollowingProgress(true, u.id);
 				followAPI.deleteFollow(u.id)
 					.then(response => {
 						if (response.resultCode === 0) {
 							props.unfollow(u.id)
 						};
+						props.toggleFollowingProgress(false, u.id);
 					});
-			}} className={s.button}>Unfollow</button> :
-			<button onClick={() => {
+			}} className={s.button}>Unfollow</button>
+			:
+			<button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
+				props.toggleFollowingProgress(true, u.id);
 				followAPI.createFollow(u.id)
 					.then(response => {
 						if (response.resultCode === 0) {
 							props.follow(u.id)
 						};
+						props.toggleFollowingProgress(false, u.id);
 					});
 			}} className={s.button}>Follow</button>
 	};
