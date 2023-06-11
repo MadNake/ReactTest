@@ -13,18 +13,26 @@ export const usersAPI = {
 		return instance.get(`users?page=${currentPage}&count=${pageSize}`)
 		.then(response => response.data);
 	},
-};
-
-export const followAPI = {
-	deleteFollow(id) {
+	follow(id) {
 		return instance.delete(`follow/${id}`)
 		.then(response => response.data)
 	},
-	createFollow(id) {
+	unfollow(id) {
 		return instance.post(`follow/${id}`, {})
 		.then(response => response.data)
-	}
+	},
 };
+
+// export const followAPI = {
+// 	deleteFollow(id) {
+// 		return instance.delete(`follow/${id}`)
+// 		.then(response => response.data)
+// 	},
+// 	createFollow(id) {
+// 		return instance.post(`follow/${id}`, {})
+// 		.then(response => response.data)
+// 	},
+// };
 
 export const profileAPI = {
 	getProfile(profileId) {

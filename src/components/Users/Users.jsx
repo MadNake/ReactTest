@@ -1,34 +1,20 @@
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
 import { NavLink } from "react-router-dom";
-import { followAPI } from "../../api/api";
 
 // created Functional/Presentation Component
 
 let Users = (props) => {
 	let followerTextButton = (u) => {
-		return u.followed ?
-			<button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
-				props.toggleFollowingProgress(true, u.id);
-				followAPI.deleteFollow(u.id)
-					.then(response => {
-						if (response.resultCode === 0) {
-							props.unfollow(u.id)
-						};
-						props.toggleFollowingProgress(false, u.id);
-					});
-			}} className={s.button}>Unfollow</button>
-			:
-			<button disabled={props.followingInProgress.some(id => id ===u.id)} onClick={() => {
-				props.toggleFollowingProgress(true, u.id);
-				followAPI.createFollow(u.id)
-					.then(response => {
-						if (response.resultCode === 0) {
-							props.follow(u.id)
-						};
-						props.toggleFollowingProgress(false, u.id);
-					});
-			}} className={s.button}>Follow</button>
+		return u.followed
+			? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+				props.unfollow(u.id)
+			}}
+				className={s.button}>Unfollow</button>
+			: <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+				props.follow(u.id)
+			}}
+				className={s.button}>Follow</button>
 	};
 	// created follow/unfollow button
 

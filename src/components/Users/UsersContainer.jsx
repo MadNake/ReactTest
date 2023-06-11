@@ -1,38 +1,21 @@
 import { connect } from "react-redux";
-import { follow, toggleIsFetching, setCurrentPage, setUsers, setUsersTotalCount, unfollow, toggleFollowingProgress } from "../../redux/users-reducer";
+import { getUsers, follow,  setCurrentPage,  unfollow, toggleFollowingProgress } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import { usersAPI } from "../../api/api";
-
 
 // created container component
 
 class UsersContainer extends React.Component {
 
 	componentDidMount = () => {
-		if (this.props.users.length === 0) {
-			this.props.toggleIsFetching(true);
-
-			usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-				.then(response => {
-					this.props.toggleIsFetching(false);
-					this.props.setUsers(response.items);
-					this.props.setUsersTotalCount(response.totalCount);
-				});
-		}
+		this.props.getUsers(this.props.currentPage, this.props.pageSize);
 	};
 	// Processes that occur after rendering
 
 	onPageChenged = (pageNumber) => {
 		this.props.setCurrentPage(pageNumber);
-		this.props.toggleIsFetching(true);
-
-		usersAPI.getUsers(pageNumber, this.props.pageSize)
-			.then(response => {
-				this.props.toggleIsFetching(false);
-				this.props.setUsers(response.items);
-			});
+		this.props.getUsers(pageNumber, this.props.pageSize);
 	};
 	// Processes that occur after a page change
 
@@ -46,7 +29,6 @@ class UsersContainer extends React.Component {
 				follow={this.props.follow}
 				currentPage={this.props.currentPage}
 				onPageChenged={this.onPageChenged}
-				toggleFollowingProgress={this.props.toggleFollowingProgress}
 				followingInProgress={this.props.followingInProgress}/>}
 		</>
 	};
@@ -69,10 +51,8 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
 	follow,
 	unfollow,
-	setUsers,
 	setCurrentPage,
-	setUsersTotalCount,
-	toggleIsFetching,
 	toggleFollowingProgress,
+	getUsers,
 })(UsersContainer)
 // connect "state" and "dispatchs" to UsersContainer to use there to render "Users" and use API requests
