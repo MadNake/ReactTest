@@ -3,6 +3,7 @@ import { getUsers, follow,  setCurrentPage,  unfollow, toggleFollowingProgress }
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import { Navigate } from "react-router-dom";
 
 // created container component
 
@@ -21,6 +22,9 @@ class UsersContainer extends React.Component {
 
 	render() {
 		// return Functional/Presentation Component with props
+		if (!this.props.isAuth) return <Navigate to="/login"/>
+
+
 		return <>
 			{this.props.isFetching ? <Preloader /> : <Users totalUsersCount={this.props.totalUsersCount}
 				pageSize={this.props.pageSize}
@@ -43,6 +47,7 @@ let mapStateToProps = (state) => {
 		currentPage: state.usersPage.currentPage,
 		isFetching: state.usersPage.isFetching,
 		followingInProgress: state.usersPage.followingInProgress,
+		isAuth: state.auth.isAuth,
 	}
 };
 // added state to Users component
