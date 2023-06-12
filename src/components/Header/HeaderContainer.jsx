@@ -1,23 +1,13 @@
 import React from "react"
 import Header from "./Header"
 import { connect } from "react-redux";
-import { setAuthUserData } from "../../redux/auth-reducer"
+import { authMe } from "../../redux/auth-reducer"
 import { useLocation,	useNavigate, useParams} from "react-router-dom";
-import { authAPI, profileAPI } from "../../api/api";
 
 class HeaderContainer extends React.Component {
 
 	componentDidMount() {
-		authAPI.authMe()
-			.then(response => {
-				if (response.resultCode === 0) {
-					let { id, email, login } = response.data;
-					profileAPI.getProfile(id)
-						.then(response => {
-							this.props.setAuthUserData(id, email, login, response);
-						})
-				}
-			});
+		this.props.authMe();
 	};
 
 	render() {
@@ -53,4 +43,4 @@ function withRouter(Component) {
 	return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, { setAuthUserData })(withRouter(HeaderContainer))
+export default connect(mapStateToProps, { authMe })(withRouter(HeaderContainer))
