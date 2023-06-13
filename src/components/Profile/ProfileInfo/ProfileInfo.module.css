@@ -13,3 +13,7 @@
   height: 80px;
   border-radius: 50%;
 }
+
+.profileInfo__wrapper {
+  font-size: 24px;
+}
