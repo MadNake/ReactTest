@@ -56,7 +56,7 @@ const AddMessageForm = (props) => {
 			validate={validate}
 			onSubmit={onSubmit}
 		>
-			{({ values }) => (
+			{() => (
 				<Form className={s.messageTextArea}>
 					<Field name="message" component="textarea" placeholder="enter your message" />
 					<button type="submit">send</button>
