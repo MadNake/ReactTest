@@ -1,0 +1,18 @@
+.loginForm__container input, button {
+	font-size: 18px;
+	max-width: 200px;
+}
+
+.loginForm__container {
+	font-size: 18px;
+	margin-left: 15px;
+}
+
+.loginForm {
+	display: grid;
+	gap: 10px;
+}
+
+.rememberMe__label {
+	max-width: max-content;
+}
