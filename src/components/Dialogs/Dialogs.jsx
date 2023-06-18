@@ -1,6 +1,7 @@
 import s from "./Dialogs.module.css"
 import DialogLink from "./DialogLink/DialogLink"
 import Message from "./Message/Message"
+import { Field, Form, Formik } from "formik"
 
 
 const Dialogs = (props) => {
@@ -11,15 +12,9 @@ const Dialogs = (props) => {
 		</li>));
 
 	let messagesElements = props.dialogsPage.messagesData.map((message) => <Message text={message.message} key={message.id} />);
-	let newMessageBody = props.dialogsPage.newMessageBody;
 
-	let onSendMessageClick = () => {
-		props.sendMessage();
-	}
-
-	let onNewMessageChange = (e) => {
-		let body = e.target.value;
-		props.updateNewMessageBody(body);
+	let addNewMessage = (newMessageBody) => {
+		props.sendMessage(newMessageBody);
 	}
 
 	return (
@@ -31,16 +26,45 @@ const Dialogs = (props) => {
 				<ul className={s.messages__list}>
 					{messagesElements}
 				</ul>
-				<div className={s.messageTextArea}>
-					<textarea
-						value={newMessageBody}
-						onChange={onNewMessageChange}
-						placeholder="enter your message" />
-					<button onClick={onSendMessageClick}>send</button>
-				</div>
+				<AddMessageForm addNewMessage={addNewMessage}/>
 			</div>
 		</section>
 	)
 }
+
+const AddMessageForm = (props) => {
+
+	let validate = values => {
+		// const errors = {};
+		// if (!values.email) {
+		// 	errors.email = 'Required';
+		// } else if (
+		// 	!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+		// ) {
+		// 	errors.email = 'Invalid email address';
+		// }
+		// return errors;
+	}
+
+	let onSubmit = (values) => {
+		props.addNewMessage(values.message)
+		values.message = "";
+	}
+	return (
+		<Formik
+			initialValues={{ message: "" }}
+			validate={validate}
+			onSubmit={onSubmit}
+		>
+			{({ values }) => (
+				<Form className={s.messageTextArea}>
+					<Field name="message" component="textarea" placeholder="enter your message" />
+					<button type="submit">send</button>
+				</Form>
+			)}
+		</Formik>
+	)
+}
+
 
 export default Dialogs
