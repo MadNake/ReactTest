@@ -1,9 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./Login.module.css"
 
-const LoginFormFormik = () => {
+const LoginForm = () => {
 
-	let validateFormik = values => {
+	let validate = values => {
 		// const errors = {};
 		// if (!values.email) {
 		// 	errors.email = 'Required';
@@ -15,7 +15,7 @@ const LoginFormFormik = () => {
 		// return errors;
 	}
 
-	let onSubmitFormik = (values, { setSubmitting }) => {
+	let onSubmit = (values, { setSubmitting }) => {
 		setTimeout(() => {
 			alert(JSON.stringify(values, null, 2));
 			setSubmitting(false);
@@ -25,12 +25,12 @@ const LoginFormFormik = () => {
 	return (
 		<Formik
 			initialValues={{ login: '', password: '', rememberMe: "" }}
-			validate={validateFormik}
-			onSubmit={onSubmitFormik}
+			validate={validate}
+			onSubmit={onSubmit}
 		>
-			 {({ isSubmitting, values }) => (
+			 {({ isSubmitting }) => (
          <Form className={s.loginForm}>
-           <Field type="login" name="login" placeholder="Login" onChange={console.log(values)} />
+           <Field type="login" name="login" placeholder="Login" />
            <ErrorMessage name="login" component="div" />
            <Field type="password" name="password" placeholder="Password" />
            <ErrorMessage name="password" component="div" />
@@ -50,7 +50,7 @@ const LoginFormFormik = () => {
 const LoginPage = (props) => (
 	<div className={s.loginForm__container}>
 		<h1>Login</h1>
-		<LoginFormFormik />
+		<LoginForm />
 	</div>
 )
 
