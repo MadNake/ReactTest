@@ -5,32 +5,3 @@ margin: 25px 0 0 10px;
 .myPostForm__container {
 	position: relative;
 }
-
-.textarea__container {
-	position: relative;
-	max-width: max-content;
-}
-
-.textarea {
-	width: 300px;
-	height: 75px;
-	padding: 10px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-}
-
-.textarea:focus {
-	outline: none;
-}
-
-.textarea_error {
-	border: 2px solid red;
-}
-
-.textarea__extra_error {
-	color: red;
-	position: absolute;
-	right: 0;
-	top: -25px;
-}

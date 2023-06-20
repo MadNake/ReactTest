@@ -15,9 +15,9 @@
 	height: 100%;
 }
 
-.messageTextArea textarea {
+/* .messageTextArea textarea {
 	width: 100%;
-}
+} */
 
 .messages__list {
 	display: grid;

@@ -1,8 +1,10 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { newProfilePostValidator } from '../../../validators/validators';
+import { Textarea } from '../../common/Forms/TextareaForm';
+
 
 const AddNewPostForm = (props) => {
 
@@ -10,7 +12,7 @@ const AddNewPostForm = (props) => {
 
 	let onSubmit = (values, { resetForm }) => {
 		props.addNewPostText(values.postMessage);
-	  resetForm();
+		resetForm();
 	}
 	return (
 		<Formik
@@ -18,29 +20,9 @@ const AddNewPostForm = (props) => {
 			validate={validator}
 			onSubmit={onSubmit}
 		>
-			{({ errors, touched }) => (
+			{() => (
 				<Form className={s.myPostForm__container}>
-					<div className={s.textarea__container}>
-						<Field
-							name="postMessage"
-							component="textarea"
-							placeholder="enter your post message"
-							cols="30"
-							rows="4"
-							className={
-								errors.postMessage && touched.postMessage && errors.postMessage === 'Max length is 30'
-									? `${s.textarea_error} ${s.textarea}`
-									: s.textarea
-							}
-						/>
-						{errors.postMessage && touched.postMessage && errors.postMessage === 'Max length is 30' && (
-              <ErrorMessage
-                name="postMessage"
-                component="span"
-                className={s.textarea__extra_error}
-              />
-            )}
-					</div>
+					<Field name="postMessage" component={Textarea}/>
 					<button type="submit">Add post</button>
 					<button>Remove</button>
 				</Form>

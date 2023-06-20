@@ -2,6 +2,8 @@ import s from "./Dialogs.module.css"
 import DialogLink from "./DialogLink/DialogLink"
 import Message from "./Message/Message"
 import { Field, Form, Formik } from "formik"
+import { newProfilePostValidator } from "../../validators/validators"
+import { Textarea } from "../common/Forms/TextareaForm"
 
 
 const Dialogs = (props) => {
@@ -26,7 +28,7 @@ const Dialogs = (props) => {
 				<ul className={s.messages__list}>
 					{messagesElements}
 				</ul>
-				<AddMessageForm addNewMessage={addNewMessage}/>
+				<AddMessageForm addNewMessage={addNewMessage} />
 			</div>
 		</section>
 	)
@@ -34,17 +36,7 @@ const Dialogs = (props) => {
 
 const AddMessageForm = (props) => {
 
-	let validate = values => {
-		// const errors = {};
-		// if (!values.email) {
-		// 	errors.email = 'Required';
-		// } else if (
-		// 	!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-		// ) {
-		// 	errors.email = 'Invalid email address';
-		// }
-		// return errors;
-	}
+	let validator = newProfilePostValidator("message")
 
 	let onSubmit = (values) => {
 		props.addNewMessage(values.message)
@@ -53,12 +45,12 @@ const AddMessageForm = (props) => {
 	return (
 		<Formik
 			initialValues={{ message: "" }}
-			validate={validate}
+			validate={validator}
 			onSubmit={onSubmit}
 		>
 			{() => (
 				<Form className={s.messageTextArea}>
-					<Field name="message" component="textarea" placeholder="enter your message" />
+					<Field name="message" component={Textarea}/>
 					<button type="submit">send</button>
 				</Form>
 			)}
