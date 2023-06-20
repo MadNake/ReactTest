@@ -3,7 +3,6 @@ import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { newProfilePostValidator } from '../../../validators/validators';
-import { Textarea } from '../../common/Forms/TextareaForm';
 
 const AddNewPostForm = (props) => {
 
@@ -42,7 +41,6 @@ const AddNewPostForm = (props) => {
               />
             )}
 					</div>
-					<Textarea name="PostMessage" errors={errors} touched={touched} />
 					<button type="submit">Add post</button>
 					<button>Remove</button>
 				</Form>
