@@ -1,26 +1,23 @@
-.textarea__container {
+.field__container {
 	position: relative;
 	max-width: max-content;
 }
 
-.textarea {
-	width: 300px;
-	height: 75px;
-	padding: 10px;
+.field {
   font-size: 16px;
   border: 2px solid #ccc;
   border-radius: 4px;
 }
 
-.textarea:focus {
+.field:focus {
 	outline: none;
 }
 
-.textarea_error {
+.field_error {
 	border: 2px solid red;
 }
 
-.textarea__extra_error {
+.field__extra_error {
 	color: red;
 	position: absolute;
 	right: 0;

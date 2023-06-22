@@ -2,8 +2,8 @@ import s from "./Dialogs.module.css"
 import DialogLink from "./DialogLink/DialogLink"
 import Message from "./Message/Message"
 import { Field, Form, Formik } from "formik"
-import { newProfilePostValidator } from "../../validators/validators"
-import { Textarea } from "../common/Forms/TextareaForm"
+import { DialogsSchema } from "../../validators/validators"
+import { Textarea } from "../common/Forms/Forms"
 
 
 const Dialogs = (props) => {
@@ -36,8 +36,6 @@ const Dialogs = (props) => {
 
 const AddMessageForm = (props) => {
 
-	let validator = newProfilePostValidator("message")
-
 	let onSubmit = (values) => {
 		props.addNewMessage(values.message)
 		values.message = "";
@@ -45,12 +43,16 @@ const AddMessageForm = (props) => {
 	return (
 		<Formik
 			initialValues={{ message: "" }}
-			validate={validator}
+			validationSchema={DialogsSchema}
 			onSubmit={onSubmit}
 		>
 			{() => (
 				<Form className={s.messageTextArea}>
-					<Field name="message" component={Textarea}/>
+					<Field
+						name="message"
+						component={Textarea}
+						cols="30"
+						rows="4" />
 					<button type="submit">send</button>
 				</Form>
 			)}

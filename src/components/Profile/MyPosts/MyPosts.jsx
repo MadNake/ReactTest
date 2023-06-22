@@ -2,13 +2,11 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import { Field, Form, Formik } from 'formik';
-import { newProfilePostValidator } from '../../../validators/validators';
-import { Textarea } from '../../common/Forms/TextareaForm';
+import { ProfilePostSchema } from '../../../validators/validators';
+import { Textarea } from '../../common/Forms/Forms';
 
 
 const AddNewPostForm = (props) => {
-
-	const validator = newProfilePostValidator("postMessage")
 
 	let onSubmit = (values, { resetForm }) => {
 		props.addNewPostText(values.postMessage);
@@ -17,12 +15,17 @@ const AddNewPostForm = (props) => {
 	return (
 		<Formik
 			initialValues={{ postMessage: "" }}
-			validate={validator}
+			validationSchema={ProfilePostSchema}
 			onSubmit={onSubmit}
 		>
 			{() => (
 				<Form className={s.myPostForm__container}>
-					<Field name="postMessage" component={Textarea}/>
+					<Field
+						name="postMessage"
+						component={Textarea}
+						cols="30"
+						rows="4"
+						placeholder="enter your post message" />
 					<button type="submit">Add post</button>
 					<button>Remove</button>
 				</Form>
