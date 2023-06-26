@@ -20,3 +20,15 @@
 .rememberMe__label {
 	max-width: max-content;
 }
+
+.apiErrors {
+	border: red 1px solid;
+	color: red;
+	padding: 5px;
+	width: max-content;
+}
+
+.apiErrors__container {
+	display: grid;
+	gap: 10px;
+}

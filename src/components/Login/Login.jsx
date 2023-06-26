@@ -8,10 +8,10 @@ import { Navigate } from "react-router-dom";
 
 const LoginForm = (props) => {
 
-	const onSubmit = (values, { setSubmitting, resetForm }) => {
-		props.onSubmit(values)
+	const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
+		props.onSubmit(values, setStatus)
 		setSubmitting(false);
-		resetForm();
+		// resetForm();
 	}
 
 	return (
@@ -20,31 +20,40 @@ const LoginForm = (props) => {
 			validationSchema={LogInSchema}
 			onSubmit={onSubmit}
 		>
-			{({ isSubmitting }) => (
-				<Form className={s.loginForm}>
-					<Field type="email" name="email" placeholder="email" component={Input}/>
-					<Field type="password" name="password" placeholder="Password" component={Input} />
-					<label className={s.rememberMe__label}>
-						<Field type="checkbox" name="rememberMe" />
-						<span>Remember me</span>
-					</label>
-					<button type="submit" disabled={isSubmitting}>
-						Submit
-					</button>
-				</Form>
-			)}
+			{({ isSubmitting, status }) => {
+
+				let apiErrors
+				if (status) {
+					apiErrors = status.error.map((item, index) => <span className={s.apiErrors} key={index}>{item}</span>)
+				}
+
+				return (
+					<Form className={s.loginForm}>
+						<Field type="email" name="email" placeholder="email" component={Input} />
+						<Field type="password" name="password" placeholder="Password" component={Input} />
+						{status && <div className={s.apiErrors__container}>{apiErrors}</div>}
+						<label className={s.rememberMe__label}>
+							<Field type="checkbox" name="rememberMe" />
+							<span>Remember me</span>
+						</label>
+						<button type="submit" disabled={isSubmitting}>
+							Submit
+						</button>
+					</Form>
+				)
+			}}
 		</Formik>
 	)
 }
 
 const LoginPage = (props) => {
 
-	const onSubmit = (formData) => {
-		props.login(formData.email, formData.password, formData.rememberMe);
+	const onSubmit = (formData, setStatus) => {
+		props.login(formData, setStatus);
 	}
 
 	if (props.isAuth) {
-		return <Navigate to={"/profile"}/>
+		return <Navigate to={"/profile"} />
 	}
 
 	return <div className={s.loginForm__container}>
@@ -57,4 +66,4 @@ const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {login})(LoginPage)
+export default connect(mapStateToProps, { login })(LoginPage)

@@ -48,12 +48,15 @@ export const authMe = () => {
 	}
 }
 
-export const login = (email, password, rememberMe = false) => dispatch => {
-	authAPI.login(email, password, rememberMe)
+export const login = (loginData, setStatus) => dispatch => {
+	authAPI.login(loginData)
 	.then(response => {
 		if (response.resultCode === 0) {
 			dispatch(authMe())
-		}
+		} else {
+			let errorMessage = response.messages.length > 0 ? response.messages : "Some error"
+			setStatus({error: errorMessage})
+	}
 	})
 }
 
