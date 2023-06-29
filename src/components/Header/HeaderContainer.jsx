@@ -1,14 +1,10 @@
 import React from "react"
 import Header from "./Header"
 import { connect } from "react-redux";
-import { authMe, logout } from "../../redux/auth-reducer"
-import { useLocation,	useNavigate, useParams} from "react-router-dom";
+import { logout } from "../../redux/auth-reducer"
+
 
 class HeaderContainer extends React.Component {
-
-	componentDidMount() {
-		this.props.authMe();
-	};
 
 	render() {
 		return (
@@ -16,31 +12,13 @@ class HeaderContainer extends React.Component {
 		)
 	};
 
-
 }
 
 const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth,
 	login: state.auth.login,
 	userId: state.auth.userId,
-	profile: state.auth.profile,
+	profile: state.profilePage.profile,
 })
 
-
-function withRouter(Component) {
-	function ComponentWithRouterProp(props) {
-			let location = useLocation();
-			let navigate = useNavigate();
-			let params = useParams();
-			return (
-					<Component
-							{...props}
-							router={{ location, navigate, params }}
-					/>
-			);
-	}
-
-	return ComponentWithRouterProp;
-}
-
-export default connect(mapStateToProps, { authMe, logout })(withRouter(HeaderContainer))
+export default connect(mapStateToProps, { logout })(HeaderContainer)

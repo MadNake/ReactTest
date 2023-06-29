@@ -3,7 +3,7 @@ import { getUsers, follow, setCurrentPage, unfollow, toggleFollowingProgress } f
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
+// import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
 
 // created container component
@@ -58,5 +58,5 @@ export default compose(
 		toggleFollowingProgress,
 		getUsers,
 	}),
-	withAuthRedirect
+	// withAuthRedirect
 )(UsersContainer)

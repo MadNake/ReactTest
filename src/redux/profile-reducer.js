@@ -57,13 +57,11 @@ export const setStatus = (status) => (
 	{ type: SET_STATUS, status }
 )
 
-export const getProfile = (profileId) => {
-	return (dispatch) => {
-		profileAPI.getProfile(profileId)
+export const getProfile = (profileId) => (dispatch) => {
+		return profileAPI.getProfile(profileId)
 			.then(response => {
 				dispatch(setUserProfile(response));
 			});
-	}
 }
 
 export const getStatus = (profileId) => {
